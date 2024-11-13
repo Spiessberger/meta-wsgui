@@ -1,6 +1,5 @@
 inherit core-image
-
-IMAGE_ROOTFS_EXTRA_SPACE = "1000000"
+inherit populate_sdk_qt6_base
 
 IMAGE_INSTALL += " \
   ttf-roboto \
