@@ -1,0 +1,6 @@
+header:
+  version: 17
+  includes: 
+    - wsgui-image.yml
+
+task: populate_sdk

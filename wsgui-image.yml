@@ -1,0 +1,60 @@
+header:
+  version: 17
+
+machine: raspberrypi5
+distro: poky-wsgui
+target: wsgui-image
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/git/poky
+    branch: scarthgap
+    commit: dce4163d42f7036ea216b52b9135968d51bec4c1
+    path: layers/poky
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    branch: scarthgap
+    commit: 2e3126c9c16bb3df0560f6b3896d01539a3bfad7
+    path: layers/meta-openembedded
+    layers:
+      meta-oe:
+      meta-python:
+      # meta-networking:
+      # meta-initramfs:
+      # meta-multimedia:
+      # meta-filesystems:
+      # meta-perl:
+
+  meta-raspberry:
+    url: https://github.com/agherzan/meta-raspberrypi.git
+    branch: scarthgap
+    commit: 6df7e028a2b7b2d8cab0745dc0ed2eebc3742a17
+    path: layers/meta-raspberrypi
+
+  meta-qt6:
+    url: http://code.qt.io/yocto/meta-qt6.git
+    branch: 6.8.1
+    commit: 5bf5b55c458c06ff8a037b2508ebe0cb4011dc76
+    path: layers/meta-qt6
+
+  meta-wsgui:
+    path: layers/meta-wsgui
+
+bblayers_conf_header:
+  meta-wsgui: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+
+local_conf_header:
+  licenses: |
+    LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"
+
+  waveshare-dsi-display: |
+    RPI_KERNEL_DEVICETREE_OVERLAYS += " overlays/vc4-kms-dsi-waveshare-panel.dtbo"
+    RPI_EXTRA_CONFIG = "dtoverlay=vc4-kms-dsi-waveshare-panel,10_1_inch"

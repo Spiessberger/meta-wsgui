@@ -1,0 +1,10 @@
+header:
+  version: 17
+  includes: 
+    - wsgui-image.yml
+
+local_conf_header:
+  dev: |
+    EXTRA_IMAGE_FEATURES = "debug-tweaks"
+    IMAGE_ROOTFS_EXTRA_SPACE = "1000000"
+    IMAGE_INSTALL += " i2c-tools packagegroup-qt6-modules"
