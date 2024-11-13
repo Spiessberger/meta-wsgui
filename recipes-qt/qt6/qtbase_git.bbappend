@@ -1,2 +1,1 @@
 PACKAGECONFIG:append = " sql-sqlite"
-
